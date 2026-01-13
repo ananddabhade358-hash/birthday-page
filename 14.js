@@ -18,13 +18,13 @@ function changeWish(){
 
 /* Memory Gallery */
 const memoryPhotos = [
-  "img/im1.jpeg",
-  "img/im2.jpeg",
-  "img/im3.jpeg",
-  "img/im4.jpeg",
-  "img/im5.jpeg",
-  "img/im6.jpeg",
-  "img/im7.jpeg"
+  "im1.jpeg",
+  "im2.jpeg",
+  "im3.jpeg",
+  "im4.jpeg",
+  "im5.jpeg",
+  "im6.jpeg",
+  "im7.jpeg"
 ];
 
 let memIndex = 0;
