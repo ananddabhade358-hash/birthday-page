@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday</title>
+  <link rel="stylesheet" href="14.css">
+</head>
+<body>
+
+  <div class="container" id="mainContent">
+
+    <h1>Happy Birthday </h1>
+    <h2 id="name">Dear Diksha</h2>
+
+    <!-- Photo Slider -->
+    <div class="slider">
+      <img src="img/14.jpeg" class="slide active">
+      <img src="img/pic2.jpeg" class="slide">
+      <img src="img/pic3.jpeg" class="slide">
+    </div>
+
+    <div class="wishes">
+      <p>Happy Birthday to my world 🥰</p>
+    </div>
+
+    <button onclick="changeWish()">Special Wish 💙</button>
+
+    <p class="footer">Made with ❤️ for you</p>
+
+    <!-- Memory Button (BELOW everything) -->
+    <button onclick="showMemory()" style="margin-top:20px;">
+      Memory with You 💖
+    </button>
+
+  </div>
+
+  <!-- MEMORY SECTION (Initially Hidden) -->
+<div class="memory" id="memorySection" style="display:none;">
+  <img id="memoryImg" src="img/im2.jpeg">
+
+  <button onclick="nextMemory()" class="next-btn">Next ➜</button>
+
+  <button onclick="exitMemory()" class="exit-btn">
+    ⬅ Back
+  </button>
+</div>
+<!-- Special Message Section -->
+<div id="specialMessage" style="display:none;" class="special-msg">
+  <!-- इथे तू तुझा message टाक -->
+  <p>
+    🌸Happy Birthday to my world🥰
+I can’t explain how thankful I am for you,
+for coming into my life and staying.
+We had ups and downs, but we never gave up.
+Thank you for understanding me and standing by me.
+You make things feel lighter even on hard days.
+You matter to me more than you know.<br>
+.<br>
+.<br>
+.<br>
+You’re mine 🤍 and I choose you, always.
+.<br>
+.<br>
+.<br>
+I’ll always be grateful for the day I found you,
+and even more grateful that you stayed.<br>
+.<br>
+.<br>
+.<br>
+Today is your day ❤️
+<br> Happiest Birthday my bayko 💕
+Happiest Birthday my pillu 😘✨ <br>
+Happiest Birthday my Bestie 😍💫 <br>
+   <br>
+    (You are the most precious part of my life 💖)
+  </p>
+ 
+  <button onclick="backFromMessage()" class="back-msg-btn">
+  ⬅ Back
+</button>
+
+</div>
+
+  <script src="14.js"></script>
+</body>
+</html>
