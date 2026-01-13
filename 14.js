@@ -1,22 +1,33 @@
-/* Photo Slider */
+/* =========================
+   PHOTO SLIDER
+========================= */
 let slides = document.querySelectorAll(".slide");
-let index = 0;
+let slideIndex = 0;
 
 setInterval(() => {
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
+  slides[slideIndex].classList.remove("active");
+  slideIndex = (slideIndex + 1) % slides.length;
+  slides[slideIndex].classList.add("active");
 }, 2500);
 
-function changeWish(){
-  // Hide birthday content
-  document.getElementById("mainContent").style.display = "none";
 
-  // Show special message
+/* =========================
+   SPECIAL MESSAGE
+========================= */
+function changeWish() {
+  document.getElementById("mainContent").style.display = "none";
   document.getElementById("specialMessage").style.display = "flex";
 }
 
-/* Memory Gallery */
+function backFromMessage() {
+  document.getElementById("specialMessage").style.display = "none";
+  document.getElementById("mainContent").style.display = "block";
+}
+
+
+/* =========================
+   MEMORY GALLERY + MUSIC
+========================= */
 const memoryPhotos = [
   "im1.jpeg",
   "im2.jpeg",
@@ -24,53 +35,49 @@ const memoryPhotos = [
   "im4.jpeg",
   "im5.jpeg",
   "im6.jpeg",
-  "im7.jpeg"
+  "im7.jpeg",
+  "im8.jpeg",
+  "im9.jpeg",
+  "im10.jpeg"
 ];
 
 let memIndex = 0;
+const memoryImage = document.getElementById("memoryImg");
+const bgMusic = document.getElementById("bgMusic");
 
-function showMemory(){
+function showMemory() {
+  // Start song ONLY here
+  bgMusic.volume = 0.5;
+  bgMusic.play().catch(() => {});
+
   document.getElementById("mainContent").style.display = "none";
   document.getElementById("memorySection").style.display = "block";
 }
 
-function nextMemory(){
+function nextMemory() {
   memIndex = (memIndex + 1) % memoryPhotos.length;
-  document.getElementById("memoryImg").src = memoryPhotos[memIndex];
+  memoryImage.src = memoryPhotos[memIndex];
 }
-function exitMemory(){
-  // Memory hide
+
+function prevMemory() {
+  memIndex = (memIndex - 1 + memoryPhotos.length) % memoryPhotos.length;
+  memoryImage.src = memoryPhotos[memIndex];
+}
+
+function exitMemory() {
+  // Stop song when exiting memory
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
+
   document.getElementById("memorySection").style.display = "none";
-
-  // Birthday page show
   document.getElementById("mainContent").style.display = "block";
 }
-function backFromMessage(){
-  // Hide special message
-  document.getElementById("specialMessage").style.display = "none";
 
-  // Show birthday page again
-  document.getElementById("mainContent").style.display = "block";
-}
-/* Floating Hearts */
-function createHeart(){
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-  document.body.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 7000);
-}
-
-setInterval(createHeart, 600);
-/* Swipe Support for Memory Images */
+/* =========================
+   SWIPE SUPPORT (MOBILE)
+========================= */
 let startX = 0;
-
-const memoryImage = document.getElementById("memoryImg");
 
 memoryImage.addEventListener("touchstart", e => {
   startX = e.touches[0].clientX;
@@ -78,16 +85,41 @@ memoryImage.addEventListener("touchstart", e => {
 
 memoryImage.addEventListener("touchend", e => {
   let endX = e.changedTouches[0].clientX;
-  if(startX - endX > 50){
-    nextMemory();   // swipe left
-  }
-  if(endX - startX > 50){
-    prevMemory();   // swipe right
-  }
+
+  if (startX - endX > 50) nextMemory();   // swipe left
+  if (endX - startX > 50) prevMemory();   // swipe right
 });
 
-function prevMemory(){
-  memIndex = (memIndex - 1 + memoryPhotos.length) % memoryPhotos.length;
-  memoryImage.src = memoryPhotos[memIndex];
+
+/* =========================
+   VIDEO SECTION
+========================= */
+function showVideo(){
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
+
+  document.getElementById("mainContent").style.display = "none";
+  document.getElementById("videoSection").style.display = "flex";
 }
 
+function backFromVideo(){
+  document.getElementById("videoSection").style.display = "none";
+  document.getElementById("mainContent").style.display = "block";
+}
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}
+
+setInterval(createHeart, 600);
